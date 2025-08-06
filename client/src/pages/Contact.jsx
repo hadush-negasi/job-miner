@@ -17,7 +17,7 @@ const Contact = () => {
         >
           {/* Optional: Prevent spam */}
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="http://localhost:3000/thank-you" /> {/* Optional redirect */}
+          <input type="hidden" name="_next" value={`${window.location.origin}/thank-you`} /> {/* Optional redirect */}
           
           <input
             type="text"

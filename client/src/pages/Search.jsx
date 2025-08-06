@@ -10,6 +10,8 @@ const Search = () => {
   const location = useLocation();
   const { keyword } = queryString.parse(location.search);
 
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +21,7 @@ const Search = () => {
     setJobs([]); // clear old results
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/scrape/remoteok?keyword=${kw}`
+        `${BASE_URL}/api/scrape/remoteok?keyword=${kw}`
       );
       setJobs(res.data || []);
     } catch (err) {
