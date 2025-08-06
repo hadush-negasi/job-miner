@@ -16,11 +16,22 @@ export const scrapeRemoteOK = async (keyword = 'engineer') => {
   $('tr.job').each((i, el) => {
     const title = $(el).find('.company_and_position [itemprop=title]').text().trim();
     const company = $(el).find('.company_and_position [itemprop=name]').text().trim();
-    const tags = $(el).find('.tags h3').map((i, tag) => $(tag).text().trim()).get();
     const link = 'https://remoteok.com' + $(el).attr('data-href');
+    const datePosted = $(el).find('time').attr('datetime') || 'N/A';
+    const location = $(el).find('.location').text().trim();
+    const salary = $(el).find('.salary').text().trim();
+    const jobType = $(el).find('.tags h3:contains("full-time"), .tags h3:contains("contract")').text().trim();
 
     if (title && company && link) {
-      jobs.push({ title, company, tags, link });
+      jobs.push({
+        title,
+        company,
+        location,
+        datePosted,
+        salary,
+        jobType,
+        link,
+      });
     }
   });
 
