@@ -48,15 +48,16 @@ Built as a portfolio project to demonstrate full-stack development, real-time we
 
 ---
 
-## 📂 Folder Structure
+## 📁 Folder Structure
 
+```
 job-miner/
-├── client/                 # React frontend
+├── client/                # React frontend
 │   ├── components/
 │   ├── pages/
 │   ├── assets/
 │   └── ...
-├── server/                 # Node + Express backend
+├── server/                # Node + Express backend
 │   ├── scraper/
 │   ├── controllers/
 │   └── ...
@@ -64,9 +65,9 @@ job-miner/
 ├── README.md
 ├── package.json
 └── ...
+```
 
 ---
-
 
 ## 🔧 Features
 
