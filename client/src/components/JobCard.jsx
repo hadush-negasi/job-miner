@@ -1,22 +1,23 @@
 const JobCard = ({ job }) => {
   return (
-    <div className="border p-4 rounded shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold text-blue-600">{job.title}</h3>
-      <p className="text-gray-700">{job.company}</p>
-      <div className="flex flex-wrap gap-2 mt-2">
-        {job.tags?.map((tag, idx) => (
-          <span key={idx} className="bg-gray-200 text-sm px-2 py-1 rounded">
-            {tag}
-          </span>
-        ))}
+    <div className="border border-gray-200 p-4 rounded-lg shadow-sm">
+      <h3 className="text-lg font-semibold text-blue-700">{job.title}</h3>
+      <p className="text-gray-600">{job.company}</p>
+
+      <div className="text-sm text-gray-500 mt-2">
+        {job.location && <p><strong>📍 Location:</strong> {job.location}</p>}
+        {job.salary && <p><strong>💰 Salary:</strong> {job.salary}</p>}
+        {job.datePosted && <p><strong>📅 Posted:</strong> {new Date(job.datePosted).toDateString()}</p>}
+        {job.jobType && <p><strong>🧪 Type:</strong> {job.jobType}</p>}
       </div>
+
       <a
         href={job.link}
         target="_blank"
-        rel="noreferrer"
-        className="inline-block mt-4 text-blue-500 underline"
+        rel="noopener noreferrer"
+        className="inline-block mt-4 text-blue-600 font-medium hover:underline"
       >
-        View Job
+        View Job →
       </a>
     </div>
   );
