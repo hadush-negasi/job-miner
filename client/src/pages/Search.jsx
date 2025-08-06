@@ -26,7 +26,7 @@ const Search = () => {
       console.error('Failed to fetch jobs', err);
     }
     setLoading(false);
-  }, []); // no dependencies or add needed ones
+  }, [BASE_URL]); // no dependencies or add needed ones
 
   useEffect(() => {
     if (keyword) fetchJobs(keyword);
