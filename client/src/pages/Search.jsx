@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useCallback } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
@@ -15,24 +15,22 @@ const Search = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchJobs = async (kw) => {
+  const fetchJobs = useCallback(async (kw) => {
     if (!kw) return;
     setLoading(true);
-    setJobs([]); // clear old results
+    setJobs([]);
     try {
-      const res = await axios.get(
-        `${BASE_URL}/api/scrape/remoteok?keyword=${kw}`
-      );
+      const res = await axios.get(`${BASE_URL}/api/scrape/remoteok?keyword=${kw}`);
       setJobs(res.data || []);
     } catch (err) {
       console.error('Failed to fetch jobs', err);
     }
     setLoading(false);
-  };
+  }, []); // no dependencies or add needed ones
 
   useEffect(() => {
     if (keyword) fetchJobs(keyword);
-  }, [keyword]);
+  }, [keyword, fetchJobs]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
