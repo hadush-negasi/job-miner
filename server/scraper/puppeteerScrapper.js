@@ -18,7 +18,7 @@ export async function scrapeRemoteOK(keyword) {
   
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
   
-  await page.waitForSelector("#jobsboard tr.job", { timeout: 30000 });
+  await page.waitForSelector("#jobsboard tr.job", { timeout: 60000 });
   await page.waitForFunction(() => 
     document.querySelectorAll("#jobsboard tr.job").length > 0
   );
