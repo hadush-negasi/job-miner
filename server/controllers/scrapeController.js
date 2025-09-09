@@ -1,4 +1,5 @@
-import { scrapeRemoteOK } from '../scraper/remoteokScraper.js';
+import { scrapeRemoteOK } from "../scraper/puppeteerScrapper.js";
+//import { scrapeRemoteOK } from '../scraper/remoteokScraper.js';
 
 export const scrapeRemoteJobs = async (req, res) => {
   const { keyword } = req.query;

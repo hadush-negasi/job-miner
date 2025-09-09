@@ -10,6 +10,8 @@ export const scrapeRemoteOK = async (keyword = 'engineer') => {
     },
   });
 
+  console.log(data);
+
   const $ = cheerio.load(data);
   const jobs = [];
 
