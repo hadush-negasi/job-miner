@@ -21,8 +21,8 @@ Built as a portfolio project to demonstrate full-stack development, real-time we
 ### Job Search
 ![Search Screenshot](./screenshots/search-page.png)
 
-### Homepage 
-![Search Screenshot](./screenshots/home-page2.png)
+### Homepage2
+![Home Screenshot](./screenshots/home-page2.png)
 
 ### About Us Page
 ![Search Screenshot](./screenshots/about.png)
