@@ -16,7 +16,7 @@ export async function scrapeRemoteOK(keyword) {
   const url = `https://remoteok.com/remote-${keyword}-jobs`;
   //console.log("Fetching:", url);
   
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 120000 });
   
   await page.waitForSelector("#jobsboard tr.job", { timeout: 120000 });
   await page.waitForFunction(() => 
@@ -44,6 +44,9 @@ export async function scrapeRemoteOK(keyword) {
     }
 
   });
+
+  // Explicitly close the page
+  if (page) await page.close();
 
   await browser.close();
   return jobs;
