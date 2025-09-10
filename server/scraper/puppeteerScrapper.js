@@ -20,13 +20,19 @@ export async function scrapeRemoteOK(keyword) {
   
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
   console.log("page loaded");
+  await page.screenshot({ path: "debug.png", fullPage: true });
+  try {
+    await page.waitForSelector("#jobsboard tr.job", { timeout: 10000 }); // shorter timeout
+    console.log("Selector found!");
+  } catch (err) {
+    console.warn("Selector not found, continuing anyway...");
+  }
   
-  await page.waitForSelector("#jobsboard tr.job", { timeout: 120000 });
-  await page.waitForFunction(() => 
-    document.querySelectorAll("#jobsboard tr.job").length > 0
-  );
+  //await page.waitForFunction(() => 
+  //  document.querySelectorAll("#jobsboard tr.job").length > 0
+  //);
   // extra small delay to let JS populate rows
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  //await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const content = await page.content();
   console.log(content.slice(0, 500)); // print first 500 chars
