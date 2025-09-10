@@ -5,18 +5,21 @@ import * as cheerio from 'cheerio';
 puppeteer.use(StealthPlugin());
 
 export async function scrapeRemoteOK(keyword) {
+  console.log("launching browser");
   const browser = await puppeteer.launch({
     headless: "new",              // run headless in production
-    args: ["--no-sandbox", "--disable-setuid-sandbox"], // required on Render/Netlify etc.
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"], // required on Render/Netlify etc.
   });
-
+  console.log("browser launchec");
   const page = await browser.newPage();
+  console.log("page created, going to url");
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/118.0 Safari/537.36");
 
   const url = `https://remoteok.com/remote-${keyword}-jobs`;
   //console.log("Fetching:", url);
   
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 120000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+  console.log("page loaded");
   
   await page.waitForSelector("#jobsboard tr.job", { timeout: 120000 });
   await page.waitForFunction(() => 
