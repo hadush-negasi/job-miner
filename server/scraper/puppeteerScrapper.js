@@ -32,10 +32,10 @@ export async function scrapeRemoteOK(keyword) {
   //  document.querySelectorAll("#jobsboard tr.job").length > 0
   //);
   // extra small delay to let JS populate rows
-  //await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const content = await page.content();
-  console.log(content.slice(0, 500)); // print first 500 chars
+  console.log(content);
   const $ = cheerio.load(content);
 
   const jobs = [];
