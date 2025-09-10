@@ -18,7 +18,7 @@ export async function scrapeRemoteOK(keyword) {
   
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
   
-  await page.waitForSelector("#jobsboard tr.job", { timeout: 60000 });
+  await page.waitForSelector("#jobsboard tr.job", { timeout: 120000 });
   await page.waitForFunction(() => 
     document.querySelectorAll("#jobsboard tr.job").length > 0
   );
@@ -26,6 +26,7 @@ export async function scrapeRemoteOK(keyword) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const content = await page.content();
+  console.log(content.slice(0, 500)); // print first 500 chars
   const $ = cheerio.load(content);
 
   const jobs = [];
