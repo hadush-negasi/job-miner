@@ -1,59 +1,33 @@
 import { useState } from 'react';
-import Autosuggest from 'react-autosuggest';
-import { keywordSuggestions } from '../data/keywords';
 
 const JobSearchForm = ({ onSearch }) => {
-  const [value, setValue] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const onSuggestionsFetchRequested = ({ value }) => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-
-    const filtered =
-      inputLength === 0
-        ? []
-        : keywordSuggestions.filter((kw) =>
-            kw.toLowerCase().includes(inputValue)
-          );
-
-    setSuggestions(filtered);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      onSearch(searchTerm.trim());
+    }
   };
-
-  const onSuggestionsClearRequested = () => {
-    setSuggestions([]);
-  };
-
-  const getSuggestionValue = (suggestion) => suggestion;
-
-  const renderSuggestion = (suggestion) => (
-    <div className="p-2 hover:bg-gray-100 cursor-pointer">{suggestion}</div>
-  );
-
-  // 🧠 This runs when a suggestion is clicked
-  const onSuggestionSelected = (event, { suggestion }) => {
-    onSearch(suggestion);
-  };
-  
 
   return (
-    <div className="mb-4">
-      <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        onSuggestionSelected={onSuggestionSelected}
-        inputProps={{
-          placeholder: 'Search jobs (e.g. backend, python)',
-          value,
-          onChange: (e, { newValue }) => setValue(newValue),
-          className:
-            'p-2 border rounded w-full text-base focus:outline-none',
-        }}
-      />
-    </div>
+    <form onSubmit={handleSubmit} className="mb-6">
+      <div className="flex flex-col sm:flex-row gap-4">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Enter job title, skills, or keywords (e.g., Data Scientist, Python, React)"
+          className="flex-1 p-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition whitespace-nowrap"
+        >
+          Search Jobs
+        </button>
+      </div>
+    </form>
   );
 };
 

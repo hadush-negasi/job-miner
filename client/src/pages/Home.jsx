@@ -1,14 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import RemoteWorker from '../assets/remote-worker.svg';
-const categories = [
-  "Frontend",
-  "Backend",
-  "DevOps",
-  "Full Stack",
-  "React",
-  "Python",
-];
 
 const Home = () => {
   return (
@@ -43,30 +35,6 @@ const Home = () => {
             alt="Remote worker illustration"
             className="w-full"
           />
-        </div>
-      </motion.section>
-
-      {/* Categories Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="py-12 bg-white shadow-sm"
-      >
-        <h2 className="text-3xl font-semibold text-center mb-8 text-blue-700">
-          Explore Top Job Categories
-        </h2>
-        <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 px-6">
-          {categories.map((category) => (
-            <NavLink
-              key={category}
-              to={`/search?keyword=${category.toLowerCase().replace(' ', '-')}`}
-              className="bg-blue-50 border border-blue-200 text-blue-600 rounded-lg py-3 font-medium text-center hover:bg-blue-100 transition"
-            >
-              {category}
-            </NavLink>
-          ))}
         </div>
       </motion.section>
 
