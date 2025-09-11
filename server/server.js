@@ -8,7 +8,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors({
-  origin: 'http://localhost:3000', // Your React app's URL
+  origin: ['https://job-miner.netlify.app','http://localhost:3000'], // Your React app's URL
   credentials: true
 }));
 app.use(express.json());

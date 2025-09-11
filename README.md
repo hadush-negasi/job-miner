@@ -1,8 +1,7 @@
-# 🛠️ Job Miner – Real-time Remote Job Scraper
+# 🛠️ Job Miner – Real-time Job Scraper
 
-Job Miner is a full-stack job search web application that scrapes **live job listings** from [RemoteOK](https://remoteok.com). Users can search by tech-related keywords like "React", "Python", "Backend", and more.
-
-Built as a portfolio project to demonstrate full-stack development, real-time web scraping, and modern UI design.
+Job Miner is a full-stack job search web application that fetches live job listings from external job APIs such as Careerjet, remoteOk.
+Users can search by tech-related keywords like "React", "Python", "Backend", and more to find the most relevant remote opportunities.
 
 ---
 
